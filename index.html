@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anastasiia Portfolio</title>
+<meta name="description" content="Reels, UGC & video for brands. RU / ES / EN.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE a creator's showreel: rich, warm, editorial
+   IDEA a film strip of her real reels you scroll sideways, vertical first, then horizontal
+   PICTURE three real reel frames fanned in the hero; the carousel is the main body of the page
+   COLOUR Sceptre Red #4D0E12 ground, Transparent Yellow #F5EFC6 text, Cerulean #A5BCD6 for details
+   TYPE Morganite (display; Oswald fills in Cyrillic) + Involve (text)
+   LAYOUT laptop: name and lead left, fanned frames right; phone: name, frames, buttons */
+@font-face{font-family:Morganite;src:url(fonts/Morganite-Bold.ttf) format("truetype");font-weight:700;font-display:swap}
+@font-face{font-family:Morganite;src:url(fonts/Morganite-SemiBold.ttf) format("truetype");font-weight:600;font-display:swap}
+@font-face{font-family:Involve;src:url(fonts/Involve-VF.ttf) format("truetype");font-weight:400 700;font-display:swap}
+:root{color-scheme:dark;--bg:#4d0e12;--bg2:#5c1419;--bg3:#3d0a0d;--ink:#f5efc6;--soft:#f5efc6b3;--blue:#a5bcd6;--line:#f5efc62e}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Involve,system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{font-family:Morganite,Oswald,Impact,sans-serif;font-weight:700;line-height:1.05;margin:0;text-transform:uppercase;text-wrap:balance;letter-spacing:.03em}
+h2{font-size:clamp(56px,8vw,104px)}
+h3{font-size:34px;font-weight:600;line-height:1}
+:lang(ru) h1,:lang(ru) h2,:lang(ru) h3,:lang(ru) .role,:lang(ru) .logo,:lang(ru) .fact b,:lang(ru) .clist b,:lang(ru) .dream{font-family:Oswald,Impact,sans-serif;font-weight:600;letter-spacing:-.035em;line-height:1}
+:lang(ru) h2{font-size:clamp(38px,5vw,64px)}
+:lang(ru) .logo{font-size:22px;letter-spacing:.06em}
+:lang(ru) .fact b{font-size:clamp(36px,3.8vw,52px)}
+:lang(ru) .clist b{font-size:20px}
+:lang(ru) h3{font-size:24px}
+a{color:inherit}
+img,video{max-width:100%;display:block}
+.wrap{max-width:1240px;margin:0 auto}
+.band{padding-block:clamp(44px,6vw,96px);padding-inline:max(5vw,16px)}
+nav{position:sticky;top:0;z-index:5;background:var(--bg3);border-bottom:1px solid var(--line);padding:10px max(5vw,16px)}
+nav .wrap{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.logo{font:700 32px/1 Morganite,Oswald,sans-serif;text-transform:uppercase;text-decoration:none;margin-right:auto;letter-spacing:.04em}
+.links{display:flex;gap:20px;flex-wrap:wrap}
+.links a{text-decoration:none;font-weight:500}
+.links a:hover{color:var(--blue)}
+.langs{display:flex;border:1.5px solid var(--blue);border-radius:99px;overflow:hidden}
+.langs button{all:unset;cursor:pointer;padding:6px 13px;min-height:32px;font-weight:600;font-size:14px;display:flex;align-items:center;color:var(--blue)}
+.langs button[aria-pressed=true]{background:var(--blue);color:var(--bg)}
+button:focus-visible,.btn:focus-visible,a:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center}
+.hero h1{font-size:clamp(110px,17vw,230px);line-height:.9;letter-spacing:.02em}
+:lang(ru) .hero h1{font-size:clamp(54px,8vw,112px);line-height:1;letter-spacing:.04em}
+.role{font:600 clamp(34px,3.4vw,44px)/1 Morganite,Oswald,sans-serif;text-transform:uppercase;color:var(--blue);margin-top:16px;letter-spacing:.04em}
+:lang(ru) .role{font-size:clamp(20px,2.2vw,28px)}
+.lead{font-size:18px;max-width:30em;margin:22px 0 26px}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;min-height:50px;padding:0 24px;border-radius:99px;font-weight:600;text-decoration:none;border:1.5px solid var(--ink)}
+.btn.fill{background:var(--ink);color:var(--bg)}
+.btn:hover{border-color:var(--blue)}
+.btn.fill:hover{background:var(--blue);color:var(--bg)}
+.fan{position:relative;height:min(560px,62vw);min-height:360px}
+.fan img{position:absolute;top:50%;left:50%;width:42%;aspect-ratio:9/16;object-fit:cover;border-radius:20px;border:1.5px solid var(--blue);background:var(--bg2);box-shadow:0 18px 40px #0006}
+.fan img:nth-child(1){transform:translate(-118%,-46%) rotate(-7deg)}
+.fan img:nth-child(2){transform:translate(-50%,-52%);z-index:2;width:46%}
+.fan img:nth-child(3){transform:translate(18%,-46%) rotate(7deg)}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-block:1px solid var(--line);background:var(--bg3)}
+.fact{padding:22px max(2.5vw,16px);border-right:1px solid var(--line)}
+.fact:last-child{border-right:0}
+.fact b{display:block;font:700 clamp(50px,5.4vw,76px)/1 Morganite,Oswald,sans-serif;color:var(--blue);white-space:nowrap;letter-spacing:.03em}
+.fact span{display:block;margin-top:10px;color:var(--soft);font-size:15px;line-height:1.4}
+.head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap}
+.fmt{margin-top:40px}
+.fmt+.fmt{margin-top:56px}
+.fmt h3{color:var(--blue);font-size:clamp(30px,3vw,40px)}
+:lang(ru) .fmt h3{font-size:clamp(22px,2.2vw,28px)}
+.dream{margin-top:56px;padding-top:40px;border-top:1px solid var(--line);font:700 clamp(54px,7vw,96px)/1.05 Morganite,Oswald,sans-serif;text-transform:uppercase;letter-spacing:.03em;text-wrap:balance;color:var(--blue)}
+:lang(ru) .dream{font-size:clamp(34px,4.4vw,58px)}
+.dream span{color:var(--ink)}
+.arrows{display:flex;gap:10px}
+.arrows button{all:unset;cursor:pointer;width:52px;height:52px;border-radius:50%;border:1.5px solid var(--blue);color:var(--blue);display:grid;place-items:center}
+.arrows button:hover{background:var(--blue);color:var(--bg)}
+.arrows button:disabled{opacity:.3;cursor:default;background:none;color:var(--blue)}
+.arrows svg{width:22px;height:22px}
+.strip{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;margin-top:22px;padding-bottom:14px;scrollbar-width:thin;scrollbar-color:var(--blue) transparent;overscroll-behavior-x:contain}
+.item{flex:none;scroll-snap-align:start;margin:0}
+.item .frame{position:relative;height:clamp(380px,52vw,560px);border-radius:18px;overflow:hidden;background:var(--bg2);border:1px solid var(--line);cursor:pointer}
+.item.v .frame{aspect-ratio:9/16}
+.item.h .frame{aspect-ratio:16/9;height:auto;width:min(86vw,calc(clamp(380px,52vw,560px)*16/9))}
+.item.h{align-self:center}
+.frame video{width:100%;height:100%;object-fit:cover}
+.snd{position:absolute;right:10px;top:10px;background:#3d0a0dcc;color:var(--ink);border-radius:99px;font-size:13px;font-weight:600;padding:4px 10px;pointer-events:none}
+.item figcaption{margin-top:10px;font-size:14px;font-weight:600;color:var(--blue)}
+.item figcaption span{color:var(--soft);font-weight:400}
+.cases{display:grid;gap:16px;margin-top:48px}
+.case{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.3fr) minmax(0,1.1fr);gap:28px;padding:28px 0;border-top:1px solid var(--line)}
+.case .who{font-size:15px;color:var(--blue);margin-top:8px}
+.case p{margin:0}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.tags span{font-size:13px;font-weight:600;padding:4px 11px;border-radius:99px;border:1px solid var(--blue);color:var(--blue)}
+.res{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.res li{padding-left:20px;position:relative}
+.res li::before{content:"";position:absolute;left:0;top:.62em;width:9px;height:2px;background:var(--blue)}
+.svc{background:var(--bg3)}
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin-top:36px}
+.tile{border-radius:20px;padding:24px;border:1px solid var(--line);background:var(--bg)}
+.tile h3{margin-bottom:12px;color:var(--blue)}
+.tile p{margin:0;color:var(--soft)}
+.about{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(24px,5vw,72px);align-items:start}
+.about p{margin:18px 0 0;max-width:36em}
+.rules{border:1px solid var(--blue);border-radius:22px;padding:28px}
+.rules h3{margin-bottom:16px}
+.contact{background:var(--ink);color:var(--bg)}
+.contact .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:center}
+.contact p{margin:14px 0 0;max-width:30em}
+.clist{display:grid;gap:10px}
+.clist a{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center;min-height:58px;padding:12px 22px;border-radius:16px;text-decoration:none;border:1.5px solid var(--bg)}
+.clist a:hover{background:var(--bg);color:var(--ink)}
+.clist b{font:700 26px/1 Morganite,Oswald,sans-serif;text-transform:uppercase;letter-spacing:.05em}
+.clist span{overflow-wrap:anywhere}
+footer{padding:22px max(5vw,16px);font-size:14px;color:var(--soft);background:var(--bg3)}
+@media(max-width:1000px){.case{grid-template-columns:minmax(0,1fr) minmax(0,1.4fr)}.case .res{grid-column:2}}
+@media(max-width:760px){.hero .wrap,.about,.contact .wrap{grid-template-columns:minmax(0,1fr)}.fan{height:auto;min-height:0;aspect-ratio:1.15}.facts{grid-template-columns:minmax(0,1fr)}.fact{border-right:0;border-bottom:1px solid var(--line)}.fact:last-child{border-bottom:0}.links{display:none}}
+@media(max-width:600px){.case{grid-template-columns:minmax(0,1fr)}.case .res{grid-column:auto}.item .frame{height:min(480px,110vw)}.item.h .frame{height:auto;width:86vw}.arrows button{width:46px;height:46px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#top" data-t="name">Анастасия</a>
+    <div class="links">
+      <a href="#work" data-t="nWork">Работы</a>
+      <a href="#services" data-t="nSvc">Услуги</a>
+      <a href="#about" data-t="nAbout">Обо мне</a>
+      <a href="#contact" data-t="nContact">Контакты</a>
+    </div>
+    <div class="langs" role="group" aria-label="Language">
+      <button type="button" id="l-ru" data-l="ru">RU</button>
+      <button type="button" id="l-es" data-l="es">ES</button>
+      <button type="button" id="l-en" data-l="en">EN</button>
+    </div>
+  </div>
+</nav>
+
+<header class="band hero" id="top">
+  <div class="wrap">
+    <div>
+      <h1 data-t="name">Анастасия</h1>
+      <div class="role" data-t="role"></div>
+      <p class="lead" data-t="lead"></p>
+      <div class="btns">
+        <a class="btn fill" href="#work" data-t="cta1"></a>
+        <a class="btn" id="wa-hero" href="#contact" target="_blank" rel="noopener" data-t="cta2"></a>
+      </div>
+    </div>
+    <div class="fan" aria-hidden="true">
+      <img src="videos/personal-con-dinero.jpg" alt="">
+      <img src="videos/relocant-r10.jpg" alt="">
+      <img src="videos/ugc-timeshifter.jpg" alt="">
+    </div>
+  </div>
+</header>
+
+<section class="facts" aria-label="Results">
+  <div class="fact"><b>9K → 20K</b><span data-t="f1"></span></div>
+  <div class="fact"><b>1 000</b><span data-t="f2"></span></div>
+  <div class="fact"><b>4 × 1M+</b><span data-t="f3"></span></div>
+</section>
+
+<section class="band" id="work">
+  <div class="wrap">
+    <h2 data-t="workT"></h2>
+    <div class="fmt" data-o="v">
+      <div class="head">
+        <h3 data-t="fmtV"></h3>
+        <div class="arrows">
+          <button type="button" class="prev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button type="button" class="next" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+      <div class="strip" id="strip-v" tabindex="0"></div>
+    </div>
+    <div class="fmt" data-o="h">
+      <div class="head">
+        <h3 data-t="fmtH"></h3>
+        <div class="arrows">
+          <button type="button" class="prev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button type="button" class="next" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+      <div class="strip" id="strip-h" tabindex="0"></div>
+    </div>
+    <div class="cases" id="cases"></div>
+    <p class="dream" data-t="dream"></p>
+  </div>
+</section>
+
+<section class="band svc" id="services">
+  <div class="wrap">
+    <h2 data-t="svcT"></h2>
+    <div class="grid4" id="svc"></div>
+  </div>
+</section>
+
+<section class="band" id="about">
+  <div class="wrap about">
+    <div>
+      <h2 data-t="aboutT"></h2>
+      <p data-t="about1"></p>
+      <p data-t="about2"></p>
+    </div>
+    <div class="rules">
+      <h3 data-t="rulesT"></h3>
+      <ul class="res" id="rules"></ul>
+    </div>
+  </div>
+</section>
+
+<section class="band contact" id="contact">
+  <div class="wrap">
+    <div>
+      <h2 data-t="cT"></h2>
+      <p data-t="cI"></p>
+    </div>
+    <div class="clist" id="clist"></div>
+  </div>
+</section>
+
+<footer><div class="wrap" data-t="foot"></div></footer>
+
+<script>
+{
+/* ====== ВАШИ ДАННЫЕ: меняйте только этот блок ====== */
+const CONFIG = {
+  email: "b.annastasiia@gmail.com",
+  telegram: "N_pmi",
+  whatsapp: "34625122589",
+  whatsappShow: "+34 625 12 25 89",
+  linkedin: "https://www.linkedin.com/in/anastasiia-baburkina/"
+};
+/* Видео лежат в папке videos/. o: "v" = вертикальная карусель, "h" = горизонтальная.
+   Порядок здесь = порядок в карусели. */
+const REELS = [
+  {f: "relocant-r10", o: "v", who: "Relocant.es", lang: "RU"},
+  {f: "personal-con-dinero", o: "v", who: "@anastasiia.romanovv", lang: "ES"},
+  {f: "ugc-timeshifter", o: "v", who: "UGC · Timeshifter", lang: "ES"},
+  {f: "trucker-navi", o: "v", who: "Trucker Navi"},
+  {f: "relocant-pasaporte", o: "v", who: "Relocant.es", lang: "RU"},
+  {f: "personal-el-ridiculo", o: "v", who: "@anastasiia.romanovv", lang: "ES"},
+  {f: "ugc-lip-combo", o: "v", who: "UGC · Beauty", lang: "ES"},
+  {f: "relocant-r18", o: "v", who: "Relocant.es", lang: "RU"},
+  {f: "personal-dori", o: "v", who: "@anastasiia.romanovv", lang: "ES"},
+  {f: "ugc-esim", o: "v", who: "UGC · eSIM", lang: "ES"},
+  {f: "relocant-r02", o: "v", who: "Relocant.es", lang: "RU"},
+  {f: "vv-business-setup-1", o: "h", who: "Visa and Venture · YouTube", lang: "ES"},
+  {f: "relocant-podcast", o: "h", who: "Relocant.es · Podcast", lang: "RU"},
+  {f: "vv-business-setup-2", o: "h", who: "Visa and Venture · YouTube", lang: "ES"},
+  {f: "relocant-ad-a3", o: "h", who: "Relocant.es", lang: "RU"},
+  {f: "nikita-fox", o: "h", who: "Nikita Fox · Telegram Ads", lang: "RU"},
+  {f: "relocant-vnzh-horizontal", o: "h", who: "Relocant.es", lang: "RU"}
+];
+/* =================================================== */
+
+const T = {
+ru: {
+  name: "Анастасия", nWork: "Работы", nSvc: "Услуги", nAbout: "Обо мне", nContact: "Контакты",
+  role: "Reels, UGC и видео для брендов",
+  lead: "Пишу сценарии, снимаю и монтирую короткие и длинные видео для брендов на русском, испанском и английском.",
+  cta1: "Смотреть работы", cta2: "Написать в WhatsApp",
+  wa: "Здравствуйте, Анастасия! Я посмотрел(а) ваше портфолио и хочу обсудить проект.",
+  f1: "подписчиков в Instagram Relocant.es за 7 месяцев", f2: "подписчиков на YouTube Relocant.es и открытая монетизация", f3: "ролика-миллионника в моём блоге",
+  workT: "Работы", fmtV: "Вертикальный формат: Reels, TikTok, Shorts", fmtH: "Горизонтальный формат: YouTube, таргетированная реклама, подкасты",
+  sOff: "Звук выкл.", sOn: "Звук вкл.",
+  dream: "Мечтаю о собственном YouTube-шоу на испанском рынке",
+  svcT: "Чем могу помочь",
+  aboutT: "Обо мне",
+  about1: "Меня зовут Анастасия, я живу в Мадриде. Родной язык: русский. Испанский и английский в совершенстве (в том числе разные произношения), поэтому один и тот же продукт могу снять для разных рынков.",
+  about2: "Благодаря юридическому, экономическому и бизнес-бэкграунду спокойно работаю со сложными темами: ВНЖ, налоги, финансы, бизнес-сетапы. За плечами театральные школы в Москве и Барселоне и поставленная речь, поэтому в кадре держусь уверенно и естественно, подбираю подачу материала исходя из целей.",
+  rulesT: "Как я работаю",
+  cT: "Обсудим ваш проект", cI: "Напишите пару слов о продукте и задаче, отвечу в течение дня. Быстрее всего в WhatsApp или Telegram.",
+  foot: "© 2026 Анастасия · Мадрид",
+  rules: ["Дизайн монтажа, цветовые решения и образы всегда подбираю под компанию, брендбук использую на 100%", "Высокая скорость и железное соблюдение сроков и дедлайнов", "Всегда на связи: могу оперативно снять или осветить срочную тему", "Инициативная: всегда предлагаю идеи, коллаборации и форматы", "Весь контент проходит строгий фактчек"],
+  svc: [
+    ["Reels под ключ", "Идея, сценарий, съёмка, монтаж с субтитрами и описание с SEO под поиск в Instagram, TikTok и YouTube."],
+    ["UGC для брендов", "Нативные видео о продукте для рекламы и соцсетей: приложения, сервисы, бьюти."],
+    ["Горизонтальные видео", "Рекламные ролики, подкасты, видео для YouTube: идеи, сценарий, съёмка, монтаж."],
+    ["Контент-стратегия", "Рубрики, контент-план по воронке, сценарии Stories и ежемесячные отчёты."],
+    ["Консультация по соцсетям", "Разбор ваших аккаунтов в соцсетях: что работает, что мешает росту и что снимать дальше."]
+  ],
+  cases: [
+    {t: "Relocant.es", who: "Лицо бренда и продюсер видеоконтента · 2026",
+     p: "Сервис по получению ВНЖ в Испании. Вела Reels и Stories от идеи до публикации с выходом в Instagram, TikTok и YouTube, снималась в горизонтальной рекламе и подкастах с экспертами.",
+     tags: ["Сценарии", "Съёмка", "Монтаж", "Аналитика", "Подкасты", "Интервью", "Реклама"],
+     res: ["Рост Instagram с 9 000 до 20 000 подписчиков за 7 месяцев", "YouTube-канал дорос до 1 000 подписчиков и открыл монетизацию", "Успешно решены задачи по росту узнаваемости бренда и доверия к нему"]},
+    {t: "Visa and Venture", who: "Фаундер и ведущая",
+     p: "Аффилированная компания по business setup для испаноговорящих предпринимателей. Экспертный контент на YouTube.",
+     tags: ["YouTube", "Ведущая", "Business setup", "Испанский"],
+     res: ["Экспертные видео на испанском от идеи до монтажа", "Сложные темы простым языком"]},
+    {t: "Trucker Navi", who: "Рекламное лицо компании",
+     p: "Страхование тракеров и бизнесов в США.",
+     tags: ["Реклама", "Соцсети", "В кадре"],
+     res: ["Лицо рекламных кампаний", "Лицо бренда в социальных сетях"]},
+    {t: "Nikita Fox", who: "Таргетолог в Telegram Ads · 2026",
+     p: "Сценарий и съёмка рекламных роликов для компании.",
+     tags: ["Реклама", "Сценарии", "В кадре"],
+     res: ["Сценарий под рекламный формат", "Подача от третьего лица о специалисте"]},
+    {t: "UGC", who: "Видео для брендов",
+     p: "Нативные ролики о продуктах на испанском и английском: приложение против джетлага, eSIM для путешествий, косметика.",
+     tags: ["UGC", "Испанский", "Английский", "Продукт"],
+     res: ["Продукт в реальной жизни, а не в студии", "Хук, демонстрация, понятный вывод"]},
+    {t: "@anastasiia.romanovv", who: "Личный блог на испанском",
+     p: "Экспертные ролики по созданию контента, личностному росту, юмор про отношения, жизнь и переезды для аудитории Испании и Латинской Америки.",
+     tags: ["Испанский", "Обучение", "Юмор", "Сторителлинг"],
+     res: ["4 ролика-миллионника", "Весь цикл сама: идея, съёмка, монтаж", "Сейчас работаю над запуском YouTube"]}
+  ],
+  cl: ["WhatsApp", "Telegram", "Email", "LinkedIn"]
+},
+es: {
+  name: "Anastasiia", nWork: "Trabajos", nSvc: "Servicios", nAbout: "Sobre mí", nContact: "Contacto",
+  role: "Reels, UGC y vídeo para marcas",
+  lead: "Escribo guiones, grabo y edito vídeos cortos y largos para marcas en español, ruso e inglés.",
+  cta1: "Ver trabajos", cta2: "Escríbeme por WhatsApp",
+  wa: "¡Hola, Anastasiia! He visto tu portfolio y me gustaría hablar de un proyecto.",
+  f1: "seguidores en el Instagram de Relocant.es en 7 meses", f2: "suscriptores en el YouTube de Relocant.es y monetización activada", f3: "reels con más de un millón de visualizaciones en mi blog",
+  workT: "Trabajos", fmtV: "Formato vertical: Reels, TikTok, Shorts", fmtH: "Formato horizontal: YouTube, publicidad segmentada, pódcasts",
+  sOff: "Sin sonido", sOn: "Con sonido",
+  dream: "Sueño con tener mi propio show de YouTube en el mercado hispano",
+  svcT: "Cómo puedo ayudarte",
+  aboutT: "Sobre mí",
+  about1: "Soy Anastasiia y vivo en Madrid. Mi lengua materna es el ruso. Hablo español e inglés a la perfección (también con distintos acentos), así que puedo grabar el mismo producto para distintos mercados.",
+  about2: "Gracias a mi formación jurídica, económica y de negocios, me manejo con soltura en temas complejos: residencia, impuestos, finanzas, creación de empresas. Me formé en escuelas de teatro en Moscú y Barcelona y tengo la voz trabajada, por eso a cámara soy segura y natural, y adapto la forma de contar a los objetivos.",
+  rulesT: "Cómo trabajo",
+  cT: "Hablemos de tu proyecto", cI: "Cuéntame un poco sobre tu producto y el objetivo. Te respondo en un día. Lo más rápido es WhatsApp o Telegram.",
+  foot: "© 2026 Anastasiia · Madrid",
+  rules: ["El diseño de edición, los colores y los looks siempre se adaptan a la empresa; uso el manual de marca al 100%", "Rapidez y cumplimiento estricto de plazos y deadlines", "Siempre disponible: puedo grabar o cubrir un tema urgente al momento", "Proactiva: siempre propongo ideas, colaboraciones y formatos", "Todo el contenido pasa un fact-check riguroso"],
+  svc: [
+    ["Reels llave en mano", "Idea, guion, grabación, edición con subtítulos y descripción con SEO para la búsqueda de Instagram, TikTok y YouTube."],
+    ["UGC para marcas", "Vídeos nativos sobre tu producto para anuncios y redes: apps, servicios, belleza."],
+    ["Vídeo horizontal", "Anuncios, pódcasts y vídeos para YouTube: ideas, guion, grabación y edición."],
+    ["Estrategia de contenido", "Secciones fijas, plan de contenido por embudo, guiones de Stories e informes mensuales."],
+    ["Consultoría de redes sociales", "Análisis de tus cuentas: qué funciona, qué frena el crecimiento y qué grabar después."]
+  ],
+  cases: [
+    {t: "Relocant.es", who: "Imagen de marca y productora de vídeo · 2026",
+     p: "Servicio que ayuda a obtener la residencia en España. Llevé Reels y Stories de la idea a la publicación en Instagram, TikTok y YouTube, y grabé anuncios horizontales y pódcasts con expertos.",
+     tags: ["Guiones", "Grabación", "Edición", "Analítica", "Pódcasts", "Entrevistas", "Publicidad"],
+     res: ["Instagram pasó de 9.000 a 20.000 seguidores en 7 meses", "El canal de YouTube llegó a 1.000 suscriptores y activó la monetización", "Cumplidos los objetivos de aumentar el reconocimiento de la marca y la confianza en ella"]},
+    {t: "Visa and Venture", who: "Fundadora y presentadora",
+     p: "Empresa afiliada de creación de empresas para emprendedores hispanohablantes. Contenido experto en YouTube.",
+     tags: ["YouTube", "Presentadora", "Business setup", "Español"],
+     res: ["Vídeos expertos en español de la idea a la edición", "Temas complejos explicados de forma sencilla"]},
+    {t: "Trucker Navi", who: "Imagen publicitaria de la empresa",
+     p: "Seguros para camioneros y empresas en EE. UU.",
+     tags: ["Publicidad", "Redes sociales", "A cámara"],
+     res: ["Imagen de las campañas publicitarias", "Imagen de la marca en redes sociales"]},
+    {t: "Nikita Fox", who: "Especialista en Telegram Ads · 2026",
+     p: "Guion y grabación de anuncios para la empresa.",
+     tags: ["Publicidad", "Guiones", "A cámara"],
+     res: ["Guion adaptado al formato publicitario", "Presento al especialista en tercera persona"]},
+    {t: "UGC", who: "Vídeos para marcas",
+     p: "Vídeos nativos de producto en español e inglés: una app contra el jetlag, eSIM para viajar, cosmética.",
+     tags: ["UGC", "Español", "Inglés", "Producto"],
+     res: ["El producto en la vida real, no en un estudio", "Gancho, demostración y una conclusión clara"]},
+    {t: "@anastasiia.romanovv", who: "Mi blog personal en español",
+     p: "Vídeos expertos sobre creación de contenido y crecimiento personal, y humor sobre relaciones, vida y mudanzas para España y Latinoamérica.",
+     tags: ["Español", "Formación", "Humor", "Storytelling"],
+     res: ["4 reels con más de un millón de visualizaciones", "Todo el proceso es mío: idea, grabación, edición", "Ahora preparo el lanzamiento de mi canal de YouTube"]}
+  ],
+  cl: ["WhatsApp", "Telegram", "Email", "LinkedIn"]
+},
+en: {
+  name: "Anastasiia", nWork: "Work", nSvc: "Services", nAbout: "About", nContact: "Contact",
+  role: "Reels, UGC & video for brands",
+  lead: "I write, shoot and edit short and long-form videos for brands in English, Spanish and Russian.",
+  cta1: "See my work", cta2: "Message me on WhatsApp",
+  wa: "Hi Anastasiia! I've seen your portfolio and would like to discuss a project.",
+  f1: "Instagram followers for Relocant.es in 7 months", f2: "YouTube subscribers for Relocant.es, with monetization unlocked", f3: "reels with over a million views on my blog",
+  workT: "Work", fmtV: "Vertical: Reels, TikTok, Shorts", fmtH: "Horizontal: YouTube, targeted ads, podcasts",
+  sOff: "Sound off", sOn: "Sound on",
+  dream: "My dream is my own YouTube show for the Spanish-speaking market",
+  svcT: "How I can help",
+  aboutT: "About me",
+  about1: "I'm Anastasiia and I live in Madrid. Russian is my native language, and my Spanish and English are fluent (including different accents), so I can film the same product for different markets.",
+  about2: "With a background in law, economics and business, I'm comfortable with complex topics: residency, taxes, finance, business setup. I trained at theatre schools in Moscow and Barcelona and have a trained voice, so I'm confident and natural on camera and shape the delivery around your goals.",
+  rulesT: "How I work",
+  cT: "Let's talk about your project", cI: "Send me a few lines about your product and goal. I reply within a day. WhatsApp or Telegram is fastest.",
+  foot: "© 2026 Anastasiia · Madrid",
+  rules: ["Editing design, colours and looks always match your company; I follow your brand book 100%", "Fast turnaround and strict respect for deadlines", "Always reachable: I can film or cover an urgent topic quickly", "Proactive: I always bring ideas, collaborations and formats", "All content goes through a strict fact-check"],
+  svc: [
+    ["Reels, end to end", "Idea, script, filming, editing with captions, and an SEO description for Instagram, TikTok and YouTube search."],
+    ["UGC for brands", "Native product videos for ads and social: apps, services, beauty."],
+    ["Horizontal video", "Ads, podcasts and YouTube videos: ideas, script, filming and editing."],
+    ["Content strategy", "Recurring series, a funnel-based content plan, Stories scripts and monthly reports."],
+    ["Social media consulting", "A review of your accounts: what works, what holds growth back and what to film next."]
+  ],
+  cases: [
+    {t: "Relocant.es", who: "Brand face and video producer · 2026",
+     p: "A service that helps people get Spanish residency. I ran Reels and Stories from idea to publishing on Instagram, TikTok and YouTube, and starred in horizontal ads and podcasts with experts.",
+     tags: ["Scripts", "Filming", "Editing", "Analytics", "Podcasts", "Interviews", "Ads"],
+     res: ["Instagram grew from 9,000 to 20,000 followers in 7 months", "The YouTube channel reached 1,000 subscribers and unlocked monetization", "Delivered on the goals of growing brand awareness and trust"]},
+    {t: "Visa and Venture", who: "Founder and host",
+     p: "An affiliated business setup company for Spanish-speaking entrepreneurs. Expert content on YouTube.",
+     tags: ["YouTube", "Host", "Business setup", "Spanish"],
+     res: ["Expert videos in Spanish from idea to edit", "Complex topics made simple"]},
+    {t: "Trucker Navi", who: "Advertising face of the company",
+     p: "Insurance for truckers and businesses in the US.",
+     tags: ["Ads", "Social media", "On camera"],
+     res: ["Face of the ad campaigns", "Face of the brand on social media"]},
+    {t: "Nikita Fox", who: "Telegram Ads specialist · 2026",
+     p: "Script and filming of ad videos for the company.",
+     tags: ["Ads", "Scripts", "On camera"],
+     res: ["A script built for the ad format", "Presenting the specialist in the third person"]},
+    {t: "UGC", who: "Videos for brands",
+     p: "Native product videos in Spanish and English: a jet lag app, a travel eSIM, cosmetics.",
+     tags: ["UGC", "Spanish", "English", "Product"],
+     res: ["The product in real life, not in a studio", "Hook, demo and a clear takeaway"]},
+    {t: "@anastasiia.romanovv", who: "My personal blog in Spanish",
+     p: "Expert videos on content creation and personal growth, plus humour about relationships, life and moving abroad, for audiences in Spain and Latin America.",
+     tags: ["Spanish", "Education", "Humour", "Storytelling"],
+     res: ["4 reels with over a million views", "The whole cycle is mine: idea, filming, editing", "Now preparing to launch my YouTube channel"]}
+  ],
+  cl: ["WhatsApp", "Telegram", "Email", "LinkedIn"]
+}};
+
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+let L = "ru";
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+const card = r =>
+  `<figure class="item ${r.o === "h" ? "h" : "v"}">
+    <div class="frame" role="button" tabindex="0" aria-label="${esc(r.who)}">
+      <video src="videos/${esc(r.f)}.mp4" poster="videos/${esc(r.f)}.jpg" muted loop playsinline preload="none"></video>
+      <span class="snd"></span>
+    </div>
+    <figcaption>${esc(r.who)}${r.lang ? ` <span>· ${esc(r.lang)}</span>` : ""}</figcaption>
+  </figure>`;
+
+document.getElementById("strip-v").innerHTML = REELS.filter(r => r.o !== "h").map(card).join("");
+document.getElementById("strip-h").innerHTML = REELS.filter(r => r.o === "h").map(card).join("");
+
+const vids = [...document.querySelectorAll(".strip video")];
+const sndLabel = () => vids.forEach(v => v.nextElementSibling.textContent = v.muted ? T[L].sOff : T[L].sOn);
+const vio = "IntersectionObserver" in window ? new IntersectionObserver(es => {
+  es.forEach(e => {
+    const v = e.target;
+    if (e.isIntersecting && (!reduce || !v.muted)) v.play().catch(() => {});
+    else if (!e.isIntersecting) v.pause();
+  });
+}, {threshold: .6}) : null;
+if (vio) vids.forEach(v => vio.observe(v));
+
+function toggle(frame) {
+  const v = frame.querySelector("video");
+  const turnOn = v.muted;
+  vids.forEach(x => { x.muted = true; });
+  v.muted = !turnOn;
+  v.play().catch(() => {});
+  sndLabel();
+}
+
+const sros = [];
+document.querySelectorAll(".fmt").forEach(box => {
+  const strip = box.querySelector(".strip");
+  const prev = box.querySelector(".prev"), next = box.querySelector(".next");
+  const items = [...strip.children];
+  const go = dir => {
+    const x = strip.scrollLeft, s0 = strip.getBoundingClientRect().left, cw = strip.clientWidth;
+    const pos = items.map(it => it.getBoundingClientRect().left - s0 + x);
+    let target;
+    if (dir > 0) { const i = items.findIndex((it, k) => pos[k] + it.offsetWidth > x + cw + 8); target = i > -1 ? Math.max(pos[i], pos.find(p => p > x + 8)) : null; }
+    else { target = pos.find(p => p >= x - cw - 8); if (target >= x - 8) target = [...pos].reverse().find(p => p < x - 8); }
+    if (target == null) target = dir > 0 ? strip.scrollWidth : 0;
+    strip.scrollTo({left: target, behavior: reduce ? "auto" : "smooth"});
+  };
+  const arrows = () => {
+    prev.disabled = strip.scrollLeft < 8;
+    next.disabled = strip.scrollLeft + strip.clientWidth > strip.scrollWidth - 8;
+  };
+  prev.addEventListener("click", () => go(-1));
+  next.addEventListener("click", () => go(1));
+  strip.addEventListener("scroll", arrows, {passive: true});
+  strip.addEventListener("click", e => { const f = e.target.closest(".frame"); if (f) toggle(f); });
+  strip.addEventListener("keydown", e => {
+    const f = e.target.closest(".frame");
+    if (f && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); toggle(f); }
+    if (e.key === "ArrowRight") { e.preventDefault(); go(1); }
+    if (e.key === "ArrowLeft") { e.preventDefault(); go(-1); }
+  });
+  const ro = new ResizeObserver(arrows); ro.observe(strip); sros.push(ro);
+  arrows();
+});
+
+const waLink = () => "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(T[L].wa);
+const contacts = () => [
+  {k: 0, href: waLink(), show: CONFIG.whatsapp && CONFIG.whatsappShow},
+  {k: 1, href: "https://t.me/" + CONFIG.telegram, show: CONFIG.telegram && "@" + CONFIG.telegram},
+  {k: 2, href: "mailto:" + CONFIG.email, show: CONFIG.email},
+  {k: 3, href: CONFIG.linkedin, show: CONFIG.linkedin.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "")}
+].filter(c => c.show);
+
+function setLang(l) {
+  if (!T[l]) l = "ru";
+  L = l;
+  const d = T[l];
+  document.documentElement.lang = l;
+  document.querySelectorAll("[data-t]").forEach(el => { if (d[el.dataset.t] != null) el.textContent = d[el.dataset.t]; });
+  document.getElementById("wa-hero").href = waLink();
+  document.getElementById("svc").innerHTML = d.svc.map(s => `<div class="tile"><h3>${esc(s[0])}</h3><p>${esc(s[1])}</p></div>`).join("");
+  document.getElementById("rules").innerHTML = d.rules.map(r => `<li>${esc(r)}</li>`).join("");
+  document.getElementById("cases").innerHTML = d.cases.map(c => `<article class="case">
+      <div><h3>${esc(c.t)}</h3><div class="who">${esc(c.who)}</div><div class="tags">${c.tags.map(t => `<span>${esc(t)}</span>`).join("")}</div></div>
+      <p>${esc(c.p)}</p>
+      <ul class="res">${c.res.map(r => `<li>${esc(r)}</li>`).join("")}</ul>
+    </article>`).join("");
+  document.getElementById("clist").innerHTML = contacts().map(c =>
+    `<a href="${esc(c.href)}" target="_blank" rel="noopener"><b>${esc(d.cl[c.k])}</b><span>${esc(c.show)}</span></a>`).join("");
+  document.querySelectorAll(".langs button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.l === l)));
+  document.title = d.name + " · " + d.role;
+  sndLabel();
+  try { localStorage.setItem("lang", l); } catch (e) {}
+}
+
+document.querySelector(".langs").addEventListener("click", e => {
+  const b = e.target.closest("button[data-l]");
+  if (!b) return;
+  setLang(b.dataset.l);
+  try { const u = new URL(location.href); u.searchParams.set("lang", b.dataset.l); history.replaceState(null, "", u); } catch (e) {}
+});
+
+let start = null;
+try { start = new URLSearchParams(location.search).get("lang"); } catch (e) {}
+const h = location.hash.slice(1);
+if (!start && T[h]) start = h;
+if (!start) { try { start = localStorage.getItem("lang"); } catch (e) {} }
+if (!start) { const n = (navigator.language || "ru").slice(0, 2); start = T[n] ? n : "en"; }
+setLang(start);
+}
+</script>
+</body>
+</html>
